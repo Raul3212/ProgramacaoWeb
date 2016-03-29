@@ -6,11 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class AlunoDAO implements IDAO<Aluno>{
+public class DisciplinaDAO implements IDAO<Disciplina>{
 
 	@Override
-	public void inserir(Aluno aluno){
-		
+	public void inserir(Disciplina e) {
 		EntityManagerFactory fabrica = Persistence.
 				createEntityManagerFactory("teste_aula_cc"); 
 		
@@ -19,19 +18,17 @@ public class AlunoDAO implements IDAO<Aluno>{
 		//Lógica de banco de dados
 		
 		manager.getTransaction().begin(); //Inicia uma transação com o banco de dados
-		manager.persist(aluno); //Persistir o bjeto no banco
+		manager.persist(e); //Persistir o bjeto no banco
 		manager.getTransaction().commit(); //Faz um commit na transação
 		
 		//------ FIM da lógica ------
 		
 		manager.close();
 		fabrica.close();
-		
 	}
-	
+
 	@Override
-	public void alterar(Aluno aluno){
-	
+	public void alterar(Disciplina e) {
 		EntityManagerFactory fabrica = Persistence.
 				createEntityManagerFactory("teste_aula_cc"); 
 		
@@ -40,50 +37,52 @@ public class AlunoDAO implements IDAO<Aluno>{
 		//Lógica de banco de dados
 		
 		manager.getTransaction().begin(); //Inicia uma transação com o banco de dados
-		manager.merge(aluno); //Mescla através da chave primária (update) 
+		manager.merge(e); //Mescla através da chave primária (update) 
 		manager.getTransaction().commit(); //Faz um commit na transação
 		
 		//------ FIM da lógica ------
 		
 		manager.close();
 		fabrica.close();
-		
 	}
-	
+
 	@Override
-	public List<Aluno> listar(){
+	public List<Disciplina> listar() {
 		EntityManagerFactory fabrica = Persistence.
-				createEntityManagerFactory("teste_aula_cc"); 
+				createEntityManagerFactory("teste_aula_cc");
 		
 		EntityManager manager = fabrica.createEntityManager();
 		
 		//Lógica de banco de dados
-		List<Aluno> alunos = manager.createQuery("select a from aluno as a", Aluno.class).
+		List<Disciplina> disciplinas = manager.createQuery("select d from disciplina as d", Disciplina.class).
 				getResultList();
-		//------ FIM da lógica ------
 		
 		manager.close();
 		fabrica.close();
 		
-		return alunos;
+		return disciplinas;
 		
 	}
-	
+
 	@Override
-	public Aluno recuperar(long id){
+	public Disciplina recuperar(long id) {
+		
 		EntityManagerFactory fabrica = Persistence.
-				createEntityManagerFactory("teste_aula_cc"); 
+				createEntityManagerFactory("teste_aula_cc");
 		
 		EntityManager manager = fabrica.createEntityManager();
 		
 		//Lógica de banco de dados
-		Aluno aluno = manager.find(Aluno.class, id);
-		//------ FIM da lógica ------
+		Disciplina d = manager.find(Disciplina.class, id);
 		
 		manager.close();
 		fabrica.close();
 		
-		return aluno;
+		return d;
+		
 	}
+
+	
+	
 	
 }
