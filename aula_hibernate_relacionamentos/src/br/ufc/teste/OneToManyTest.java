@@ -17,24 +17,39 @@ public class OneToManyTest {
 		
 		EntityManager manager = fabrica.createEntityManager();
 		
+		/***** Inserir Costumer
 		Customer customer = new Customer();
 		customer.setName("RAUL_CUSTOMER");
-		
-		Order order = new Order();
-		order.setName("RAUL_ORDER");
-		
-		customer.getOrders().add(order); //Adiciona order à colação do customer
-		order.setCustomer(customer); //Relaciona order com customer
-		
-		Invoice invoice = new Invoice();
-		invoice.setName("RAUL_INVOICE");
-		
-		order.setInvoice(invoice);
-		invoice.setOrder(order);
 		
 		manager.getTransaction().begin();
 		manager.persist(customer); //Persiste os objetos customer, order e invoice 
 		manager.getTransaction().commit();
+		******/
+		
+		/****** Vincular Order a um costumer
+		Customer customer = manager.find(Customer.class, 5L);
+		System.out.println(customer.getName());
+		
+		Order order1 = new Order();
+		order1.setName("Raul - Pedido 1");
+		order1.setCustomer(customer);
+		
+		Order order2 = new Order();
+		order2.setName("Raul - Pedido 2");
+		order2.setCustomer(customer);
+		
+		manager.getTransaction().begin();
+		manager.persist(order1);
+		manager.persist(order2);
+		manager.getTransaction().commit();
+		********/
+		
+		Customer customer = manager.find(Customer.class, 5L);
+		System.out.println("Pedidos de: " + customer.getName());
+		
+		for(Order o : customer.getOrders()){
+			System.out.println(o.getName());
+		}
 		
 		manager.close();
 		fabrica.close();
