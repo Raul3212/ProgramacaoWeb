@@ -3,30 +3,33 @@ package br.ufc;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+@Entity(name="PRODUCT")
 public class Product {
 
 	@Id
-	@Column(name = "PROD_ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long prodId;
+	@Column(name="PROD_ID", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long prodId;
 	
-	@Column(name = "NAME")
+	@Column(name="NAME")
 	private String name;
 	
-	@ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)
-	List<Order> orderList;
+	@ManyToMany(mappedBy="productList",fetch=FetchType.LAZY)
+	private List<Order> orderList;
 
-	public long getProdId() {
+	/*Get's e Set's*/
+	public Long getProdId() {
 		return prodId;
 	}
 
-	public void setProdId(long prodId) {
+	public void setProdId(Long prodId) {
 		this.prodId = prodId;
 	}
 
@@ -45,5 +48,8 @@ public class Product {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
+	
+	
+	
 	
 }

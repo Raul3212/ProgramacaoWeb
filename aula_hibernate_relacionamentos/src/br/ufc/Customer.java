@@ -10,28 +10,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity(name = "CUSTOMER")
+@Entity(name="CUSTOMER")
 public class Customer {
 
 	@Id
-	@Column(name = "CUST_ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@Column(name="CUST_ID",nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	
-	@OneToMany(mappedBy = "customer", //Atributo definido na classe Order
-			targetEntity = Order.class,
-			fetch = FetchType.EAGER
-			) 
-	private Collection<Order> orders; //Para relacionamento 1 para n
+	@OneToMany(mappedBy="customer",
+			   targetEntity=Order.class,
+			   fetch=FetchType.EAGER)
+	private Collection<Order> orders;
 	
-	@Column(name = "NAME")
+	@Column(name="NAME")
 	private String name;
 
-	public long getId() {
+	/*GET'S E SET'S*/
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -51,4 +51,19 @@ public class Customer {
 		this.name = name;
 	}
 	
+
+
+
+	
+	
 }
+
+
+
+
+
+
+
+
+
+

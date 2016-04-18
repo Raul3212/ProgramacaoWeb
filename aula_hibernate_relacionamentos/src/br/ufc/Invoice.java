@@ -8,40 +8,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-@Entity(name = "ORDER_INVOICE")
+@Entity(name="ORDER_INVOICE")
 public class Invoice {
-
+	
 	@Id
-	@Column(name = "INVOICE_ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long invoiceId;
+	@Column(name="INVOICE_ID",nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long invoiceId;
 	
-	@Column(name = "ORDER_ID",  //name tem que ser idêntico ao definido na classe Order
-			insertable = false, 
-			updatable = false
-			)
-	private long orderId;
+	@Column(name="ORDER_ID",insertable=false,updatable=false)
+	private Long orderId;
 	
-	@OneToOne(optional = false)
-	@JoinColumn(name = "ORDER_ID")
+	@OneToOne(optional=false)
+	@JoinColumn(name="ORDER_ID")
 	private Order order;
 
-	@Column(name = "NAME")
+	@Column(name="NAME")
 	private String name;
 	
-	public long getInvoiceId() {
+	/*GET'S E SET'S*/
+	public Long getInvoiceId() {
 		return invoiceId;
 	}
 
-	public void setInvoiceId(long invoiceId) {
+	public void setInvoiceId(Long invoiceId) {
 		this.invoiceId = invoiceId;
 	}
 
-	public long getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(long orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 
@@ -61,4 +59,13 @@ public class Invoice {
 		this.name = name;
 	}
 	
+	
+
 }
+
+
+
+
+
+
+
